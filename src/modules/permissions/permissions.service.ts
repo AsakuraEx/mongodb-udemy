@@ -14,7 +14,7 @@ export class PermissionsService {
     async createPermission(permission: PermissionDto){
 
         const permissionExist = await this.permissionModel.findOne({
-            name: Permission.name
+            name: permission.name
         })
         console.log(permissionExist)
 
@@ -26,6 +26,10 @@ export class PermissionsService {
         
         return p.save();
 
+    }
+
+    getPermissions(){
+        return this.permissionModel.find();
     }
 
 }

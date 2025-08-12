@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { PermissionsService } from './permissions.service';
 import { PermissionDto } from './dto/permission-dto';
 
@@ -11,5 +11,10 @@ export class PermissionsController {
     createPermission(@Body() permission: PermissionDto){
         return this.permissionService.createPermission(permission)
     }
+
+    @Get()
+    getPermission() {
+        return this.permissionService.getPermissions()
+    }  
 
 }
