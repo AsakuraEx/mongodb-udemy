@@ -13,7 +13,6 @@ import { PermissionsModule } from './modules/permissions/permissions.module';
       isGlobal: true,
       envFilePath: `src/environment/${process.env.NODE_ENV}.env`
     }),
-    //MongooseModule.forRoot(`mongodb+srv://eq17001:Pokeluchos2.@cluster0.dfyfmwd.mongodb.net/`),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
