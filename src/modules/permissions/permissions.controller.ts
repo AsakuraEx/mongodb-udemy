@@ -7,7 +7,6 @@ export class PermissionsController {
 
     constructor(private permissionService: PermissionsService) {}
 
-
     @Post()
     createPermission(@Body() permission: PermissionDto){
         return this.permissionService.createPermission(permission)
