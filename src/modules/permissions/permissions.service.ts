@@ -44,13 +44,9 @@ export class PermissionsService {
 
     async updatePermission(updatePermission: UpdatePermissionDto){
         
-        const permissionExist = await this.permissionModel.findOne({
-            name: updatePermission.originalName
-        })
+        const permissionExist = await this.findPermissionByName(updatePermission.originalName)
 
-        const newPermissionExist = await this.permissionModel.findOne({
-            name: updatePermission.newName
-        })
+        const newPermissionExist = await this.findPermissionByName(updatePermission.newName)
 
         if(permissionExist && !newPermissionExist){
 
@@ -73,15 +69,19 @@ export class PermissionsService {
     }
 
     async deletePermission(name: string){
-        const permissionExist = await this.permissionModel.findOne({
-            name: name
-        })
+        const permissionExist = await this.findPermissionByName(name)
 
         if(permissionExist){
             return permissionExist.deleteOne()
         }
 
         throw new ConflictException('No se pudo eliminar el permiso');
+    }
+
+    async findPermissionByName(name: string){
+        return await this.permissionModel.findOne({
+            name: name
+        })
     }
 
 }
